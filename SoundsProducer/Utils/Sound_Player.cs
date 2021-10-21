@@ -73,6 +73,11 @@ namespace SoundsProducer.Utils
             this.paused = true;
         }
 
+        public void setVolume(double value)
+        {
+            this.mediaPlayer.Volume = value;
+        }
+
         public bool isPaused()
         {
             return this.paused;

@@ -85,5 +85,12 @@ namespace SoundsProducer.Views
         {
             this.button_file_chooser.Text = this.path;
         }
+
+        private void trackBar_volume_ValueChanged(object sender, EventArgs e)
+        {
+            double trackbarValue = this.trackBar_volume.Value / 100.00;
+            foreach (Sound_Player sp in sp_list)
+                sp.setVolume(trackbarValue);
+        }
     }
 }
