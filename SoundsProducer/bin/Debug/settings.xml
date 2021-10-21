@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Settings>
+  <Sounds>
+      <Sound>./Media/file_example_WAV_2MG.wav</Sound>
+      <Sound>./Media/ImperialMarch60.wav</Sound>
+      <Sound>./Media/StarWars60.wav</Sound>
+      <Sound>./Media/CantinaBand60.wav</Sound>
+	  <Sound>./Media/CantinaBand60.wav</Sound>
+	  <Sound>./Media/CantinaBand60.wav</Sound>
+	  <Sound>./Media/CantinaBand60.wav</Sound>
+	  <Sound>./Media/CantinaBand60.wav</Sound>
+	  <Sound>./Media/CantinaBand60.wav</Sound>
+	  <Sound>./Media/CantinaBand60.wav</Sound>
+	  <Sound>./Media/CantinaBand60.wav</Sound>
+	  <Sound>./Media/CantinaBand60.wav</Sound>
+	  <Sound>./Media/CantinaBand60.wav</Sound>
+  </Sounds>
+</Settings>
