@@ -18,7 +18,7 @@ namespace SoundsProducer
             Sound_Player.stopAll();
         }
 
-        private void Form_root_Load(object sender, EventArgs e)
+        private void Form_root_Load(object sender, EventArgs e) // Loads all the paths with sounds from settings file, then instance a CustomPanelSounds and adds it the form
         {
             string settings = "./settings.xml";
             Xml_Reader xml_Reader = new Xml_Reader(settings);

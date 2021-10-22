@@ -5,6 +5,7 @@ using System.Windows.Forms;
 
 namespace SoundsProducer.Views
 {
+    // Custom panel with controls to manage sounds
     public partial class CustomPanelSounds : UserControl
     {
         private List<Sound_Player> sp_list = new List<Sound_Player>();
@@ -37,42 +38,48 @@ namespace SoundsProducer.Views
                 this.sp_list.Clear();
 
             double trackbarValue = this.trackBar_volume.Value / 100.00;
-
-            if (sp_list.Count > 0)
+            try
             {
-                Sound_Player lastSound_PlayerCreated = sp_list[sp_list.Count - 1];
-                if (lastSound_PlayerCreated.isPaused())
+                if (sp_list.Count > 0)
                 {
-                    if (!Sound_Player.allInstancedSound_PlayerObjectsList.Contains(lastSound_PlayerCreated))
+                    Sound_Player lastSound_PlayerCreated = sp_list[sp_list.Count - 1];
+                    if (lastSound_PlayerCreated.isPaused())
                     {
-                        sp_list.Remove(lastSound_PlayerCreated);
-                        lastSound_PlayerCreated.setPaused(false);
-                        Sound_Player sp = new Sound_Player(this.path);
-                        sp_list.Add(sp);
-                        sp.setVolume(trackbarValue);
-                        sp.play(false, 0);
+                        if (!Sound_Player.allInstancedSound_PlayerObjectsList.Contains(lastSound_PlayerCreated))
+                        {
+                            sp_list.Remove(lastSound_PlayerCreated);
+                            lastSound_PlayerCreated.setPaused(false);
+                            Sound_Player sp = new Sound_Player(this.path);
+                            sp_list.Add(sp);
+                            sp.setVolume(trackbarValue);
+                            sp.play(false, 0);
+                        }
+                        else
+                        {
+                            lastSound_PlayerCreated.setVolume(trackbarValue);
+                            lastSound_PlayerCreated.play(false, 0);
+                            lastSound_PlayerCreated.setPaused(false);
+                        }
                     }
                     else
                     {
-                        lastSound_PlayerCreated.setVolume(trackbarValue);
-                        lastSound_PlayerCreated.play(false, 0);
-                        lastSound_PlayerCreated.setPaused(false);
+                        Sound_Player sp = new Sound_Player(this.path);
+                        sp.setVolume(trackbarValue);
+                        sp_list.Add(sp);
+                        sp.play(false, 0);
                     }
                 }
                 else
                 {
                     Sound_Player sp = new Sound_Player(this.path);
-                    sp.setVolume(trackbarValue);
                     sp_list.Add(sp);
+                    sp.setVolume(trackbarValue);
                     sp.play(false, 0);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Sound_Player sp = new Sound_Player(this.path);
-                sp_list.Add(sp);
-                sp.setVolume(trackbarValue);
-                sp.play(false, 0);
+                MessageBox.Show(ex.Message, "Warning");
             }
         }
 

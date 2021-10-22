@@ -6,9 +6,10 @@ using System.Windows.Media;
 
 namespace SoundsProducer.Utils
 {
+    // Class to manage sounds using a MediaPlayer class
     public class Sound_Player
     {
-        public static List<Sound_Player> allInstancedSound_PlayerObjectsList = new List<Sound_Player>();
+        public static List<Sound_Player> allInstancedSound_PlayerObjectsList = new List<Sound_Player>(); // Static list with all instanced objects of this class
 
         private int id;
         private string path;
@@ -32,7 +33,6 @@ namespace SoundsProducer.Utils
             }
 
             initializeMediaPlayerEvents();
-
             allInstancedSound_PlayerObjectsList.Add(this);
         }
 
@@ -55,7 +55,7 @@ namespace SoundsProducer.Utils
         }
 
         // Public methods
-        async public void play(bool simultaneously, int delay = 0)
+        async public void play(bool simultaneously, int delay = 0) // simultaneously true allow play sounds and the same time, false don't allow it
         {
             await Task.Delay(delay);
             Console.WriteLine("Media with ID: " + this.id + " playing.");
@@ -70,8 +70,9 @@ namespace SoundsProducer.Utils
             this.mediaPlayer.Play();
         }
 
-        public void play()
+        async public void play(int delay = 0) // plays sounds simultaneously always
         {
+            await Task.Delay(delay);
             Console.WriteLine("Media with ID: " + this.id + " playing.");
             this.mediaPlayer.Play();
         }
@@ -104,7 +105,7 @@ namespace SoundsProducer.Utils
             this.paused = value;
         }
 
-        public static void stopAll()
+        public static void stopAll() // Static method that allows stop all sounds in the list allInstancedSound_PlayerObjectsList
         {
             foreach (Sound_Player sp in allInstancedSound_PlayerObjectsList)
                 sp.stop();
