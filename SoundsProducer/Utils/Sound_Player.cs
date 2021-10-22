@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace SoundsProducer.Utils
@@ -54,6 +55,21 @@ namespace SoundsProducer.Utils
         }
 
         // Public methods
+        async public void play(bool simultaneously, int delay = 0)
+        {
+            await Task.Delay(delay);
+            Console.WriteLine("Media with ID: " + this.id + " playing.");
+            if (!simultaneously)
+            {
+                if (allInstancedSound_PlayerObjectsList.Count > 1)
+                {
+                    allInstancedSound_PlayerObjectsList[allInstancedSound_PlayerObjectsList.Count - 2].stop();
+                    allInstancedSound_PlayerObjectsList.RemoveAt(allInstancedSound_PlayerObjectsList.Count - 2);
+                }
+            }
+            this.mediaPlayer.Play();
+        }
+
         public void play()
         {
             Console.WriteLine("Media with ID: " + this.id + " playing.");

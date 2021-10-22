@@ -36,26 +36,43 @@ namespace SoundsProducer.Views
             if (Sound_Player.allInstancedSound_PlayerObjectsList.Count == 0)
                 this.sp_list.Clear();
 
+            double trackbarValue = this.trackBar_volume.Value / 100.00;
+
             if (sp_list.Count > 0)
             {
                 Sound_Player lastSound_PlayerCreated = sp_list[sp_list.Count - 1];
                 if (lastSound_PlayerCreated.isPaused())
                 {
-                    lastSound_PlayerCreated.play();
-                    lastSound_PlayerCreated.setPaused(false);
+                    if (!Sound_Player.allInstancedSound_PlayerObjectsList.Contains(lastSound_PlayerCreated))
+                    {
+                        sp_list.Remove(lastSound_PlayerCreated);
+                        lastSound_PlayerCreated.setPaused(false);
+                        Sound_Player sp = new Sound_Player(this.path);
+                        sp_list.Add(sp);
+                        sp.setVolume(trackbarValue);
+                        sp.play(false, 0);
+                    }
+                    else
+                    {
+                        lastSound_PlayerCreated.setVolume(trackbarValue);
+                        lastSound_PlayerCreated.play(false, 0);
+                        lastSound_PlayerCreated.setPaused(false);
+                    }
                 }
                 else
                 {
                     Sound_Player sp = new Sound_Player(this.path);
+                    sp.setVolume(trackbarValue);
                     sp_list.Add(sp);
-                    sp.play();
+                    sp.play(false, 0);
                 }
             }
             else
             {
                 Sound_Player sp = new Sound_Player(this.path);
                 sp_list.Add(sp);
-                sp.play();
+                sp.setVolume(trackbarValue);
+                sp.play(false, 0);
             }
         }
 
