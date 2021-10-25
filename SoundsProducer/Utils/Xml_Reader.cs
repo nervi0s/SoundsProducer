@@ -91,6 +91,28 @@ namespace SoundsProducer.Utils
             return values;
         }
 
+        // Returns a lisf of string list of attributes values from a specific node name
+        public List<List<String>> GetNodeAttributesValuesList(String nodeName)
+        {
+            List<List<String>> values = new List<List<String>>();
+            XmlNodeList nodeList = GetElementsByTagName(nodeName);
+            foreach (XmlNode node in nodeList)
+            {
+                List<String> attributesValues = new List<String>();
+                XmlAttributeCollection xmlAttributes = node.Attributes;
+                if (xmlAttributes != null)
+                {
+                    for (int i = 0; i < xmlAttributes.Count; i++)
+                    {
+                        attributesValues.Add(xmlAttributes[i].Value);
+                    }
+                }
+                values.Add(attributesValues);
+            }
+
+            return values;
+        }
+
         // Returns a string list of values ​​of a specific node attribute name
         public List<String> GetNodeAttributeValues(String nodeName, String attributeName)
         {

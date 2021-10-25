@@ -94,6 +94,7 @@ namespace SoundsProducer
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1094, 450);
             this.Controls.Add(this.tableLayoutPanel_base);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form_root";
             this.Text = "Sounds Producer";
             this.Load += new System.EventHandler(this.Form_root_Load);

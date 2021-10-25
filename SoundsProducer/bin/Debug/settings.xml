@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Settings>
   <Sounds>
-      <Sound>./Media/file_example_WAV_2MG.wav</Sound>
-      <Sound>./Media/ImperialMarch60.wav</Sound>
-      <Sound>./Media/StarWars60.wav</Sound>
-      <Sound>./Media/CantinaBand60.wav</Sound>
-	  <Sound>./Media/CantinaBand60.wav</Sound>
-	  <Sound>./Media/CantinaBand60.wav</Sound>
-	  <Sound>./Media/CantinaBand60.wav</Sound>
-	  <Sound>./Media/CantinaBand60.wav</Sound>
-	  <Sound>./Media/CantinaBand60.wav</Sound>
-	  <Sound>./Media/CantinaBand60.wav</Sound>
-	  <Sound>./Media/CantinaBand60.wav</Sound>
-	  <Sound>./Media/CantinaBand60.wav</Sound>
-	  <Sound>./Media/CantinaBand60.wav</Sound>
+      <Sound id="01" simultaneity="true" delay="0" hardStopWithNoSimultaneity="false">./Media/file_example_WAV_2MG.wav</Sound>
+      <Sound id="02" simultaneity="false" delay="0" hardStopWithNoSimultaneity="false">./Media/ImperialMarch60.wav</Sound>
+      <Sound id="03" simultaneity="false" delay="0" hardStopWithNoSimultaneity="true">./Media/StarWars60.wav</Sound>
+      <Sound id="04" simultaneity="true" delay="0" hardStopWithNoSimultaneity="false">./Media/CantinaBand60.wav</Sound>
+	  <Sound id="05" simultaneity="true" delay="0" hardStopWithNoSimultaneity="false">./Media/CantinaBand60.wav</Sound>
+	  <Sound id="06" simultaneity="true" delay="0" hardStopWithNoSimultaneity="false">./Media/CantinaBand60.wav</Sound>
+	  <Sound id="07" simultaneity="true" delay="0" hardStopWithNoSimultaneity="false">./Media/CantinaBand60.wav</Sound>
+	  <Sound id="08" simultaneity="true" delay="0" hardStopWithNoSimultaneity="false">./Media/CantinaBand60.wav</Sound>
+	  <Sound id="09" simultaneity="true" delay="0" hardStopWithNoSimultaneity="false">./Media/CantinaBand60.wav</Sound>
+	  <Sound id="10" simultaneity="true" delay="0" hardStopWithNoSimultaneity="false">./Media/CantinaBand60.wav</Sound>
+	  <Sound id="11" simultaneity="true" delay="0" hardStopWithNoSimultaneity="false">./Media/CantinaBand60.wav</Sound>
+	  <Sound id="12" simultaneity="true" delay="0" hardStopWithNoSimultaneity="false">./Media/CantinaBand60.wav</Sound>
+	  <Sound id="13" simultaneity="true" delay="0" hardStopWithNoSimultaneity="false">./Media/CantinaBand60.wav</Sound>
   </Sounds>
 </Settings>

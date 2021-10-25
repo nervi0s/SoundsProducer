@@ -23,10 +23,11 @@ namespace SoundsProducer
             string settings = "./settings.xml";
             Xml_Reader xml_Reader = new Xml_Reader(settings);
             List<string> paths = xml_Reader.GetNodeValues("Sound");
+            List<List<string>> attributesList = xml_Reader.GetNodeAttributesValuesList("Sound");
 
-            foreach (string path in paths)
+            for (int i = 0; i < paths.Count; i++)
             {
-                this.flowLayoutPanel_top.Controls.Add(new CustomPanelSounds(path));
+                this.flowLayoutPanel_top.Controls.Add(new CustomPanelSounds(new Sound_Player(paths[i], Int32.Parse(attributesList[i][0]), Boolean.Parse(attributesList[i][1]), Boolean.Parse(attributesList[i][3]))));
             }
         }
     }
