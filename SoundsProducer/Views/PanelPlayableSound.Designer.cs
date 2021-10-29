@@ -1,7 +1,7 @@
 ﻿
 namespace SoundsProducer.Views
 {
-    partial class CustomPanelSounds
+    partial class PanelPlayableSound
     {
         /// <summary> 
         /// Required designer variable.

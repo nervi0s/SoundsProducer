@@ -48,27 +48,34 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Utils\Sound_Player.cs" />
+    <Compile Include="Utils\PlayableSound.cs" />
+    <Compile Include="Utils\SoundManager.cs" />
     <Compile Include="Utils\Xml_Reader.cs" />
-    <Compile Include="Views\CustomPanelSounds.cs">
+    <Compile Include="Views\PanelPlayableSound.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\CustomPanelSounds.Designer.cs">
-      <DependentUpon>CustomPanelSounds.cs</DependentUpon>
+    <Compile Include="Views\PanelPlayableSound.Designer.cs">
+      <DependentUpon>PanelPlayableSound.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Form1.cs">
+    <Compile Include="Views\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Views\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Views\CustomPanelSounds.resx">
-      <DependentUpon>CustomPanelSounds.cs</DependentUpon>
+    <Compile Include="Views\PanelSoundManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\PanelSoundManager.Designer.cs">
+      <DependentUpon>PanelSoundManager.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\PanelPlayableSound.resx">
+      <DependentUpon>PanelPlayableSound.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Views\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -79,6 +86,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\PanelSoundManager.resx">
+      <DependentUpon>PanelSoundManager.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -113,6 +113,44 @@ namespace SoundsProducer.Utils
             return values;
         }
 
+        // Return a list with list of dictionaries
+        public List<List<Dictionary<string, string>>> getNodeChildsAttriburesAndValues(String nodeName)
+        {
+            List<List<Dictionary<string, string>>> values = new List<List<Dictionary<string, string>>>();
+
+            XmlNodeList nodeList = GetElementsByTagName(nodeName);
+            foreach (XmlNode node in nodeList) // Iterate in the node
+            {
+                List<Dictionary<string, string>> childsInfoList = new List<Dictionary<string, string>>();
+                // Get his childs
+                XmlNodeList childsNodes = node.ChildNodes;
+                // Iterate in childs
+                foreach (XmlNode childNode in childsNodes)
+                {
+                    // Save info in childsInfoList
+                    Dictionary<string, string> info = new Dictionary<string, string>();
+                    info.Add("attributes", string.Join(",", GetSingleNodeAttributesValues(childNode.Attributes)));
+                    info.Add("value", childNode.InnerText);
+                    childsInfoList.Add(info);
+                }
+                values.Add(childsInfoList);
+            }
+            return values;
+        }
+
+        // Returnds a list with attributes values
+        public List<String> GetSingleNodeAttributesValues(XmlAttributeCollection xmlAttributeCollection)
+        {
+            List<String> values = new List<String>();
+
+            foreach (XmlAttribute xmlAttribute in xmlAttributeCollection)
+            {
+                values.Add(xmlAttribute.Value);
+            }
+
+            return values;
+        }
+
         // Returns a string list of values ​​of a specific node attribute name
         public List<String> GetNodeAttributeValues(String nodeName, String attributeName)
         {
@@ -140,6 +178,5 @@ namespace SoundsProducer.Utils
         {
             return file;
         }
-
     }
 }

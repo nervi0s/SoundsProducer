@@ -1,7 +1,7 @@
 ﻿
 namespace SoundsProducer
 {
-    partial class Form_root
+    partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -49,7 +49,7 @@ namespace SoundsProducer
             this.tableLayoutPanel_base.RowCount = 2;
             this.tableLayoutPanel_base.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel_base.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tableLayoutPanel_base.Size = new System.Drawing.Size(1094, 450);
+            this.tableLayoutPanel_base.Size = new System.Drawing.Size(1129, 871);
             this.tableLayoutPanel_base.TabIndex = 0;
             // 
             // flowLayoutPanel_top
@@ -58,7 +58,7 @@ namespace SoundsProducer
             this.flowLayoutPanel_top.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel_top.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel_top.Name = "flowLayoutPanel_top";
-            this.flowLayoutPanel_top.Size = new System.Drawing.Size(1088, 369);
+            this.flowLayoutPanel_top.Size = new System.Drawing.Size(1123, 790);
             this.flowLayoutPanel_top.TabIndex = 0;
             // 
             // tableLayoutPanel_botton
@@ -68,34 +68,35 @@ namespace SoundsProducer
             this.tableLayoutPanel_botton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel_botton.Controls.Add(this.button_stop_all, 0, 0);
             this.tableLayoutPanel_botton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_botton.Location = new System.Drawing.Point(0, 375);
+            this.tableLayoutPanel_botton.Location = new System.Drawing.Point(0, 796);
             this.tableLayoutPanel_botton.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel_botton.Name = "tableLayoutPanel_botton";
             this.tableLayoutPanel_botton.RowCount = 1;
             this.tableLayoutPanel_botton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_botton.Size = new System.Drawing.Size(1094, 75);
+            this.tableLayoutPanel_botton.Size = new System.Drawing.Size(1129, 75);
             this.tableLayoutPanel_botton.TabIndex = 1;
             // 
             // button_stop_all
             // 
+            this.button_stop_all.BackColor = System.Drawing.Color.IndianRed;
             this.button_stop_all.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button_stop_all.Location = new System.Drawing.Point(3, 3);
             this.button_stop_all.Name = "button_stop_all";
-            this.button_stop_all.Size = new System.Drawing.Size(1088, 69);
+            this.button_stop_all.Size = new System.Drawing.Size(1123, 69);
             this.button_stop_all.TabIndex = 0;
             this.button_stop_all.Text = "STOP ALL";
-            this.button_stop_all.UseVisualStyleBackColor = true;
+            this.button_stop_all.UseVisualStyleBackColor = false;
             this.button_stop_all.Click += new System.EventHandler(this.button_stop_all_Click);
             // 
-            // Form_root
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1094, 450);
+            this.ClientSize = new System.Drawing.Size(1129, 871);
             this.Controls.Add(this.tableLayoutPanel_base);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Form_root";
+            this.Name = "FormMain";
             this.Text = "Sounds Producer";
             this.Load += new System.EventHandler(this.Form_root_Load);
             this.tableLayoutPanel_base.ResumeLayout(false);
