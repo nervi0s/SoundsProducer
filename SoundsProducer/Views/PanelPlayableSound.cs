@@ -47,7 +47,7 @@ namespace SoundsProducer.Views
 
         private void button_pause_Click(object sender, EventArgs e)
         {
-            // ToDo...
+            this.soundManager.pauseById(this.playableSound.getId(), 0);
         }
 
         private void CustomPanelSounds_Load(object sender, EventArgs e)

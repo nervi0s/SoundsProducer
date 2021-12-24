@@ -13,6 +13,7 @@ namespace SoundsProducer.Utils
         private int id;                         // PlayableSoud instance ID
         private string path;                    // The sound file path associated with this instance
         private bool playing;                   // True when this sound is playing, otherwise false
+        private bool paused;                    // True when this sound is paused, otherwise false
         private bool fadingOut;                 // True when this sound is fading out, otherwise false
         private bool fadingIn;                  // True when this sound is fading in, otherwise false
         private double volume;                  // The PlayableSoud instance volume value
@@ -67,16 +68,34 @@ namespace SoundsProducer.Utils
             await Task.Delay(delay);
             Console.WriteLine("PlayableSound with ID: " + this.id + " managed by SoundManager with ID: " + this.managerId + " is now playing.");
             this.playing = true;
+            this.paused = false;
             this.mediaPlayer.Play();
         }
 
         // Stops this sound with the passed delay by argument
         async public void stop(int delay = 0)
         {
-            await Task.Delay(delay);
-            Console.WriteLine("PlayableSound with ID: " + this.id + " managed by SoundManager with ID: " + this.managerId + " is now stopped.");
-            this.playing = false;
-            this.mediaPlayer.Stop();
+            if (this.isPlaying() || this.isPaused()) // Stops the sound if his playing status is true or it was paused
+            {
+                await Task.Delay(delay);
+                Console.WriteLine("PlayableSound with ID: " + this.id + " managed by SoundManager with ID: " + this.managerId + " is now stopped.");
+                this.playing = false;
+                this.paused = false;
+                this.mediaPlayer.Stop();
+            }
+        }
+
+        // Pauses the sound with the passed delay by argument
+        async public void pause(int delay = 0)
+        {
+            if (this.isPlaying()) // Stops the sound only if his playing status is true
+            {
+                await Task.Delay(delay);
+                Console.WriteLine("PlayableSound with ID: " + this.id + " managed by SoundManager with ID: " + this.managerId + " is now paused.");
+                this.playing = false;
+                this.paused = true;
+                this.mediaPlayer.Pause();
+            }
         }
 
         // Sets the sound volume of this instance
@@ -116,18 +135,18 @@ namespace SoundsProducer.Utils
                 fadingOut = true;
                 fadingIn = false;
 
-                int stepsCunter = 1;
+                int stepsCounter = 1;
 
-                while ((stepsCunter <= steps || this.volume > 0) && !this.fadingIn && this.playing) // this.volume > 0 is used in the case that the volume is manipulated when the sound is fading out 
+                while ((stepsCounter <= steps || this.volume > 0) && !this.fadingIn && this.playing) // this.volume > 0 is used in the case that the volume is manipulated when the sound is fading out 
                 {
                     if (this.volume == 0)
                         break;
 
-                    Console.WriteLine("Fade out step: " + stepsCunter);
-                    this.setVolume(Math.Round(this.volume, 2) - 0.01); // Math.Round is used because strange values was appeating like 0.499999 etc 
+                    Console.WriteLine("Fade out step: " + stepsCounter);
+                    this.setVolume(Math.Round(this.volume, 2) - 0.01); // Math.Round is used because strange values was appearing like 0.499999 etc 
                     await Task.Delay((int)msToPause);
 
-                    stepsCunter++;
+                    stepsCounter++;
                 }
 
                 fadingOut = false;
@@ -141,7 +160,7 @@ namespace SoundsProducer.Utils
         {
             if (ms != -1)
             {
-                const int volumeTo = 50; // Target volume to arrive
+                const int volumeTo = 50; // Target volume to arrive (0-100)
 
                 Console.WriteLine("PlayableSound with ID: " + this.id + " managed by SoundManager with ID: " + this.managerId + " is starting to fade in.");
                 Console.WriteLine(this.volume + " <-- Inital volume.");
@@ -154,15 +173,15 @@ namespace SoundsProducer.Utils
                 fadingOut = false;
                 this.playing = true;
 
-                int stepsCunter = 1;
+                int stepsCounter = 1;
 
-                while (stepsCunter <= steps && this.volume < volumeTo && !this.fadingOut && this.playing)
+                while ((stepsCounter <= steps && this.volume * 100.00 < volumeTo) && !this.fadingOut && this.playing)
                 {
-                    Console.WriteLine("Step: " + stepsCunter);
+                    Console.WriteLine("Fade in step: " + stepsCounter);
                     this.setVolume(Math.Round(this.volume, 2) + 0.01);
                     await Task.Delay((int)msToPause);
 
-                    stepsCunter++;
+                    stepsCounter++;
                 }
 
                 fadingIn = false;
@@ -200,6 +219,11 @@ namespace SoundsProducer.Utils
         public bool isPlaying()
         {
             return this.playing;
+        }
+
+        public bool isPaused()
+        {
+            return this.paused;
         }
 
         public bool isFadingOut()

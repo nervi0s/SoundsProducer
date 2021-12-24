@@ -81,7 +81,7 @@ namespace SoundsProducer.Views
         {
             if (this.soundManager.getFadeInOut())
             {
-                this.soundManager.setFadeInOutTime(10000);
+                this.soundManager.setFadeInOutTime(1000);
             }
             else
             {

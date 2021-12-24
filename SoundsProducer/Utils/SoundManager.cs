@@ -112,6 +112,27 @@ namespace SoundsProducer.Utils
             }
         }
 
+        // Plays the PlayableSound with the ID passed by argument with the specified delay
+        public void pauseById(int playableSoundId, int delay = 0)
+        {
+            PlayableSound playableSound = getPlayableSoundById(playableSoundId);
+            if (playableSound != null)
+            {
+                if (this.fadeInOut)
+                {
+                    playableSound.pause(delay);
+                }
+                else
+                {
+                    pauseAllChilds(playableSoundId, delay);
+                }
+            }
+            else
+            {
+                throw new Exception("The ID: " + playableSoundId + " doesn't exist.");
+            }
+        }
+
         // Returns the volume value for the sounds with the passed ID managed by this instance
         public double getVolumeById(int playableSoundId)
         {
@@ -258,6 +279,9 @@ namespace SoundsProducer.Utils
                 stopAndRemove(playableSoundToPlay.getId(), delay);
             }
 
+            if (checkAndPlayPausedSounds()) // If sounds are paused, play them
+                return;
+
             int rId = new Random().Next(1000000);
 
             playableSoundsList.Add(new PlayableSound(playableSoundToPlay.getPath(), rId, this.id, playableSoundToPlay.getId()));
@@ -289,6 +313,33 @@ namespace SoundsProducer.Utils
                     ps.setVolume(value);
                 }
             }
+        }
+
+        // Stops all child objects of the main PlayableSound, using his ID. Used when 'fadeInOut' is dissable
+        private void pauseAllChilds(int playableSoundOwnerId, int delay)
+        {
+            foreach (PlayableSound ps in playableSoundsList)
+            {
+                if (ps.getPlayableSoundOwnerId() == playableSoundOwnerId)
+                {
+                    ps.pause(delay);
+                }
+            }
+        }
+
+        // Checks if at least one of the child objects of the main PlayableSound was paused. plays the sounds if they are paused.
+        private bool checkAndPlayPausedSounds()
+        {
+            bool findedOnePaused = false; ;
+            foreach (PlayableSound ps in playableSoundsList)
+            {
+                if (ps.isPaused())
+                {
+                    ps.play();
+                    findedOnePaused = true;
+                }
+            }
+            return findedOnePaused;
         }
     }
 }
